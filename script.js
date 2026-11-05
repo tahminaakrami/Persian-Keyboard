@@ -5,6 +5,9 @@ const count = document.getElementById("count");
 // حروف فارسی در ردیف‌های جداگانه
 const rows = ["ضصثقفغعهخحج", "شسیبلاتنمکگ", "ظطزرذدپوزژچ"];
 
+// ردیف علامت‌های خاص (شامل تیلده)
+const symbols = ["~", "!", "؟", "،", ";", ".", "‌", "«", "»", "(", ")", "ـ"];
+
 // ساخت حروف با DOM
 rows.forEach((row) => {
   const div = document.createElement("div");
@@ -21,6 +24,20 @@ rows.forEach((row) => {
 
   keys.appendChild(div);
 });
+
+// ساخت ردیف علامت‌ها
+const symRow = document.createElement("div");
+symRow.className = "key-row symbol-row";
+
+symbols.forEach((sym) => {
+  const btn = document.createElement("button");
+  btn.textContent = sym;
+  btn.className = "symbol-key";
+  btn.addEventListener("click", () => add(sym));
+  symRow.appendChild(btn);
+});
+
+keys.appendChild(symRow);
 
 // نوشتن حروف
 function add(char) {
